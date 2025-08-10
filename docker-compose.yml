@@ -18,9 +18,9 @@ services:
     depends_on:
       - redis
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://0.0.0.0:8000/healthz"]
-      interval: 10s
-      timeout: 2s
+      test: ["CMD", "curl", "-f", "http://157.245.68.163:8000/healthz"]
+      interval: 30s
+      timeout: 10s
       retries: 5
     restart: unless-stopped
     deploy:
