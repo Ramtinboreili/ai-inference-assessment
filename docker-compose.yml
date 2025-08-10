@@ -6,8 +6,7 @@
 # All work submitted will be evaluated for technical quality, security practices, and documentation.
 ###################################################################################################
 
-
-
+version: '3.9'
 
 networks:
   app_net:
