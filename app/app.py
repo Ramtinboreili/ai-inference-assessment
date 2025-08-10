@@ -18,7 +18,7 @@ from pydantic import BaseModel
 # TODO: once implemented, import metrics & limiter
 from prometheus_client import generate_latest, CONTENT_TYPE_LATEST, REGISTRY
 from app.metrics import REQUEST_COUNT, REQUEST_LATENCY
-from rate_limit import rate_limiter
+from app.rate_limit import rate_limiter
 
 class JsonFormatter(logging.Formatter):
  def format(self, record):
