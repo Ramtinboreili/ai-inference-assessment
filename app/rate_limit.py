@@ -17,6 +17,7 @@ import logging
 # Use REDIS_URL env var; fail open if Redis is unavailable.
 # raise NotImplementedError("Implement Redis-based rate limiter")
 
+
 logger = logging.getLogger("app.rate_limit")
 logger.setLevel(os.getenv("LOG_LEVEL", "INFO"))
 
@@ -32,7 +33,6 @@ def rate_limiter(max_per_min: int = 60):
             os.getenv("REDIS_URL", "redis://redis:6379/0"),
             decode_responses=True
         )
-        # Test Redis connection
         redis_client.ping()
     except redis.ConnectionError as e:
         logger.warning(f"Redis connection failed: {e}. Rate limiting will fail open.")
@@ -45,12 +45,12 @@ def rate_limiter(max_per_min: int = 60):
                 logger.info("Rate limiting disabled due to Redis unavailability")
                 return await func(*args, request=request, **kwargs)
 
-            # Use client IP as the key for rate limiting
+            # استفاده از IP کلاینت برای محدود کردن نرخ
             client_ip = request.client.host
             key = f"rate_limit:{client_ip}:{int(time.time() // 60)}"
             
             try:
-                # Increment request count and set expiry for 60 seconds
+                # افزایش تعداد درخواست‌ها و تنظیم انقضا برای 60 ثانیه
                 count = redis_client.incr(key)
                 if count == 1:
                     redis_client.expire(key, 60)
