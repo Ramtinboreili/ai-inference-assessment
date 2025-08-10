@@ -80,4 +80,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/Ramtinboreili/ai-interface-app:latest
+          tags: ghcr.io/ramtinboreili/ai-interface-app:latest
