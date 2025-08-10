@@ -61,9 +61,12 @@ def metrics():
 
 @app.post("/predict")
 # TODO: decorate with @rate_limiter(max_per_min=RATE_LIMIT_PER_MIN) after implementing
+@rate_limiter(max_per_min=RATE_LIMIT_PER_MIN)
 async def predict(payload: PredictIn, request: Request):
- # TODO: once metrics exist, start a timer and observe latency; increment request counter
- txt = payload.text.lower()
- label = "positive" if any(k in txt for k in ["good", "great", "love", "awesome"]) else "negative"
- logger.info(json.dumps({"path": "/predict", "label": label}))
- return JSONResponse({"label": label})
+    REQUEST_COUNT.labels(endpoint="/predict", method="POST").inc()
+    with REQUEST_LATENCY.labels(endpoint="/predict").time():
+    # TODO: once metrics exist, start a timer and observe latency; increment request counter
+        txt = payload.text.lower()
+        label = "positive" if any(k in txt for k in ["good", "great", "love", "awesome"]) else "negative"
+        logger.info(json.dumps({"path": "/predict", "label": label}))
+        return JSONResponse({"label": label})

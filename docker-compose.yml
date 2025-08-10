@@ -26,12 +26,12 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.50"
+          cpus: "1.0"
           memory: "512M"
 
   redis:
     image: redis:7-alpine
- # restart: unless-stopped
+    restart: unless-stopped
 
   prometheus:
     image: prom/prometheus

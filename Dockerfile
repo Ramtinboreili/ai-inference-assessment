@@ -22,7 +22,7 @@ RUN pip install --upgrade pip && pip wheel --no-cache-dir --no-deps -r requireme
 FROM python:3.11-slim
 # TODO: add non-root user
 
-Run useradd -m appuser
+RUN useradd -m appuser
 
 WORKDIR /app
 
