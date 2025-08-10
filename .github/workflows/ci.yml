@@ -58,7 +58,7 @@ jobs:
 
       - name: Run tests with pytest
         run: | 
-           pytest app/tests/test_app.py --cov=app --cov-report=term-missing
+           pytest app/tests/test_app.py 
            docker compose down
 
           
