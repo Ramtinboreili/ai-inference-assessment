@@ -16,21 +16,21 @@ from fastapi.responses import Response, JSONResponse
 from pydantic import BaseModel
 
 # TODO: once implemented, import metrics & limiter
-# from prometheus_client import generate_latest, CONTENT_TYPE_LATEST, REGISTRY
-# from metrics import REQUEST_COUNT, REQUEST_LATENCY
-# from rate_limit import rate_limiter
+from prometheus_client import generate_latest, CONTENT_TYPE_LATEST, REGISTRY
+from metrics import REQUEST_COUNT, REQUEST_LATENCY
+from rate_limit import rate_limiter
 
 class JsonFormatter(logging.Formatter):
  def format(self, record):
- payload = {
- "ts": int(time.time() * 1000),
- "level": record.levelname,
- "msg": record.getMessage(),
- "logger": record.name,
- }
- if record.exc_info:
- payload["exc_info"] = self.formatException(record.exc_info)
- return json.dumps(payload)
+    payload = {
+       "ts": int(time.time() * 1000),
+       "level": record.levelname,
+       "msg": record.getMessage(),
+       "logger": record.name,
+    }
+    if record.exc_info:
+        payload["exc_info"] = self.formatException(record.exc_info)
+    return json.dumps(payload)
 
 handler = logging.StreamHandler()
 handler.setFormatter(JsonFormatter())
@@ -48,12 +48,16 @@ class PredictIn(BaseModel):
 
 @app.get("/healthz")
 def healthz():
- return {"status": "ok"}
+    REQUEST_COUNT.labels(endpoint="/healthz", method="GET").inc()
+    with REQUEST_LATENCY.labels(endpoint="/healthz").time():
+        return {"status": "ok"}
 
 @app.get("/metrics")
 def metrics():
+        REQUEST_COUNT.labels(endpoint="/metrics", method="GET").inc()
+        with REQUEST_LATENCY.labels(endpoint="/metrics").time():
  # TODO: return Prometheus metrics once metrics are implemented
- return JSONResponse({"detail": "metrics not implemented"}, status_code=501)
+          return JSONResponse({"detail": "metrics not implemented"}, status_code=501)
 
 @app.post("/predict")
 # TODO: decorate with @rate_limiter(max_per_min=RATE_LIMIT_PER_MIN) after implementing
