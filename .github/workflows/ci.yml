@@ -64,12 +64,15 @@ jobs:
           pip install pytest httpx
 
       - name: Run Docker containers
-        run: docker compose up -d
-
+        run: |
+          docker compose up -d
+          
       - name: Check health
         run: |
-          timeout 90s bash -c "until docker compose ps | grep 'healthy'; do sleep 5; done"
+          watch docker ps -a 
+          timeout 120s bash -c "until docker compose ps | grep 'healthy'; do sleep 5; done"
           if [ $? -ne 0 ]; then echo "Health check failed"; exit 1; fi
+          
 
       - name: Run tests with pytest
         run: | 
