@@ -3,8 +3,10 @@ name: AIAhura CI PIPELINE
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    
+permissions:
+  contents: read
+  packages: write
 
 jobs:
   lint:
