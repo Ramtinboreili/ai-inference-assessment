@@ -69,9 +69,8 @@ jobs:
           
       - name: Check health
         run: |
-          watch docker ps -a 
-          timeout 120s bash -c "until docker compose ps | grep 'healthy'; do sleep 5; done"
-          if [ $? -ne 0 ]; then echo "Health check failed"; exit 1; fi
+            timeout 120s bash -c "until docker compose ps | grep 'healthy'; do sleep 5; done"
+            if [ $? -ne 0 ]; then echo "Health check failed"; exit 1; fi
           
 
       - name: Run tests with pytest
