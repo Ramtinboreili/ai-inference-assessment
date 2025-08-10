@@ -52,12 +52,17 @@ def healthz():
     with REQUEST_LATENCY.labels(endpoint="/healthz").time():
         return {"status": "ok"}
 
+# @app.get("/metrics")
+# def metrics():
+#         REQUEST_COUNT.labels(endpoint="/metrics", method="GET").inc()
+#         with REQUEST_LATENCY.labels(endpoint="/metrics").time():
+#  # TODO: return Prometheus metrics once metrics are implemented
+#           return JSONResponse({"detail": "metrics not implemented"}, status_code=501)
 @app.get("/metrics")
 def metrics():
-        REQUEST_COUNT.labels(endpoint="/metrics", method="GET").inc()
-        with REQUEST_LATENCY.labels(endpoint="/metrics").time():
- # TODO: return Prometheus metrics once metrics are implemented
-          return JSONResponse({"detail": "metrics not implemented"}, status_code=501)
+    REQUEST_COUNT.labels(endpoint="/metrics", method="GET").inc()
+    with REQUEST_LATENCY.labels(endpoint="/metrics").time():
+        return Response(content=generate_latest(), media_type=CONTENT_TYPE_LATEST)
 
 @app.post("/predict")
 # TODO: decorate with @rate_limiter(max_per_min=RATE_LIMIT_PER_MIN) after implementing
