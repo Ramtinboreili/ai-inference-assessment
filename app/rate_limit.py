@@ -20,7 +20,7 @@ import logging
 logger = logging.getLogger("app.rate_limit")
 logger.setLevel(os.getenv("LOG_LEVEL", "INFO"))
 
-def rate_limit(max_per_min: int = 60):
+def rate_limiter(max_per_min: int = 60):
     """
     Redis-based rate limiter decorator.
     Limits requests to max_per_min per minute per client IP.
