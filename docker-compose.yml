@@ -18,7 +18,7 @@ services:
     depends_on:
       - redis
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/healthz"]
+      test: ["CMD", "curl", "-f", "http://0.0.0.0:8000/healthz"]
       interval: 10s
       timeout: 2s
       retries: 5
