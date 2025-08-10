@@ -57,9 +57,9 @@ jobs:
           if [ $? -ne 0 ]; then echo "Health check failed"; exit 1; fi
 
       - name: Run tests with pytest
-        run: docker compose down
-          # pytest app/tests/test.py --cov=app --cov-report=term-missing
-          
+        run: | 
+           pytest app/tests/test_app.py --cov=app --cov-report=term-missing
+           docker compose down
 
           
   build-and-push:
