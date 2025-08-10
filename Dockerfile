@@ -28,7 +28,8 @@ WORKDIR /app
 
 # TODO: copy wheels and install without cache
 COPY --from=builder /wheels /wheels
-RUN pip install --no-cache-dir /wheels/*
+RUN pip install --no-cache-dir /wheels/* 
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 COPY app/ ./
 
 ENV PYTHONUNBUFFERED=1 \

@@ -8,9 +8,13 @@
 
 
 version: "3.9"
+
+networks:
+  app_net:
+    driver: bridge
+  
 services:
   app:
-
     build: .
     env_file: .env
     ports:
@@ -21,17 +25,23 @@ services:
       test: ["CMD", "curl", "-f", "http://157.245.68.163:8000/healthz"]
       interval: 30s
       timeout: 10s
-      retries: 5
+      retries: 3
     restart: unless-stopped
     deploy:
       resources:
         limits:
-          cpus: "1.0"
+          cpus: "0.5"
           memory: "512M"
+    networks:
+      - app_net
 
   redis:
     image: redis:7-alpine
     restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    networks:
+      - app_net
 
   prometheus:
     image: prom/prometheus
@@ -40,6 +50,8 @@ services:
     ports:
       - "9090:9090"
     restart: unless-stopped
+    networks:
+      - app_net
 
   grafana:
     image: grafana/grafana
@@ -54,3 +66,9 @@ services:
     depends_on:
       - prometheus
     restart: unless-stopped
+    networks:
+      - app_net
+
+volumes:
+  redis_data:
+  

@@ -14,7 +14,7 @@
  "title": "Requests Total",
  "targets": [
  {
- "expr": "requests_total"
+ "expr": "app_requests_total"
  }
  ],
  "gridPos": {
