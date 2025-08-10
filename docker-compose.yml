@@ -15,7 +15,7 @@ networks:
   
 services:
   app:
-    image: ghcr.io/ramtinboreili/ai-interface-app:latest
+    build: .
     env_file: .env
     ports:
       - "8000:8000"                       
