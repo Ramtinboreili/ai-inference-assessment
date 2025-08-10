@@ -45,12 +45,11 @@ def rate_limiter(max_per_min: int = 60):
                 logger.info("Rate limiting disabled due to Redis unavailability")
                 return await func(*args, request=request, **kwargs)
 
-            # استفاده از IP کلاینت برای محدود کردن نرخ
+
             client_ip = request.client.host
             key = f"rate_limit:{client_ip}:{int(time.time() // 60)}"
             
             try:
-                # افزایش تعداد درخواست‌ها و تنظیم انقضا برای 60 ثانیه
                 count = redis_client.incr(key)
                 if count == 1:
                     redis_client.expire(key, 60)
