@@ -9,6 +9,7 @@ import os
 import time
 import redis
 from functools import wraps
+import fastapi
 from fastapi import HTTPException
 import logging
 

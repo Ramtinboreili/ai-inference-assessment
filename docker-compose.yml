@@ -11,13 +11,14 @@ version: '3.9'
 networks:
   app_net:
     driver: bridge
-  
+
 services:
   app:
     build: .
+    # image: ai_inferencghcr.io/ramtinboreili/ai-interface-app:01eabacb5bcedd707c4f50abe6fde3dbf01f1105e_s
     env_file: .env
     ports:
-      - "8000:8000"                       
+      - "8000:8000"    
     depends_on:
       - redis
     healthcheck:
