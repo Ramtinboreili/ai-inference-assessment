@@ -111,7 +111,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            cd /ai-inference-assessment
+            cd /root/ai-inference-assessment
             git pull origin main
             docker-compose down
             docker-compose pull 
