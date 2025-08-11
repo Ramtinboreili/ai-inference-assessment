@@ -13,10 +13,10 @@ This repo hosts the AI Inference Service for AIAhura Tech's DevOps interview pro
 - **Docs**: README covers trade-offs and troubleshooting.
 
 ## Domains
-App (metrics): [http://157.245.68.163:8000/metrics](http://157.245.68.163:8000/metrics)
-App (healthz): [http://157.245.68.163:8000/healthz](http://157.245.68.163:8000/healthz)
-Grafana: [https://grafana.ramtinboreili.ir](https://grafana.ramtinboreili.ir/) (admin/ZlYHCAsr96zD0W)
-Prometheus: [https://prom.ramtinboreili.ir ](https://prom.ramtinboreili.ir/)
+- App (metrics): [http://157.245.68.163:8000/metrics](http://157.245.68.163:8000/metrics)
+- App (healthz): [http://157.245.68.163:8000/healthz](http://157.245.68.163:8000/healthz)
+- Grafana: [https://grafana.ramtinboreili.ir](https://grafana.ramtinboreili.ir/) (admin/ZlYHCAsr96zD0W)
+- Prometheus: [https://prom.ramtinboreili.ir ](https://prom.ramtinboreili.ir/)
 
 Contributing
 Mr.mohamad sadr
