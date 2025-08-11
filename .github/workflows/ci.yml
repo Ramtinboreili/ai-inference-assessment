@@ -2,7 +2,12 @@ name: AIAhura CI PIPELINE
 
 on:
   push:
-    branches: [ "main" ]
+    paths:
+      - 'Dockerfile'
+      - 'docker-compose.yml'
+      - 'app/**'
+      - 'grafana/**'
+      - 'prometheus/**'
     
 permissions:
   contents: read
