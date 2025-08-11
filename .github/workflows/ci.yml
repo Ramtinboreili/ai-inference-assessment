@@ -101,4 +101,18 @@ jobs:
           tags: |
               ghcr.io/ramtinboreili/ai-interface-app:latest
               ghcr.io/ramtinboreili/ai-interface-app:${{ github.sha }}
-
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH and update app container
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            cd /ai-inference-assessment
+            git pull origin main
+            docker-compose down
+            docker-compose pull 
+            docker-compose up -d 
