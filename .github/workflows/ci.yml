@@ -101,9 +101,7 @@ jobs:
           tags: |
               ghcr.io/ramtinboreili/ai-interface-app:latest
               ghcr.io/ramtinboreili/ai-interface-app:${{ github.sha }}
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
+
       - name: SSH and update app container
         uses: appleboy/ssh-action@v0.1.7
         with:
@@ -116,3 +114,5 @@ jobs:
             docker-compose down
             docker-compose pull 
             docker-compose up -d 
+
+     
