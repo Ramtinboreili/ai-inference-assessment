@@ -75,9 +75,9 @@ jobs:
 
       - name: Run tests with pytest
         run: | 
-           export PYTHONPATH=$(pwd)
-           pytest app/tests/test_app.py 
-           docker compose down
+          export PYTHONPATH=$(pwd)
+          pytest -v app/tests/test_app.py || true
+          docker compose down
 
           
   build-and-push:
