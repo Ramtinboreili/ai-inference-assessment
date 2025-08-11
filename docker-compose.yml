@@ -40,7 +40,6 @@ services:
       - "traefik.http.routers.traefik.service=api@internal"
 
   app:
-    # build: .
     image: ghcr.io/ramtinboreili/ai-interface-app:latest
     env_file: .env
     ports:

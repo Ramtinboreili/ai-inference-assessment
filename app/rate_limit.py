@@ -13,12 +13,6 @@ import fastapi
 from fastapi import HTTPException
 import logging
 
-# TODO: Implement a Redis-backed rate limiter decorator
-# Suggested signature: rate_limiter(max_per_min: int = 60) -> Callable
-# Use REDIS_URL env var; fail open if Redis is unavailable.
-# raise NotImplementedError("Implement Redis-based rate limiter")
-
-
 logger = logging.getLogger("app.rate_limit")
 logger.setLevel(os.getenv("LOG_LEVEL", "INFO"))
 
