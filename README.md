@@ -25,6 +25,6 @@ This repo hosts the AI Inference Service for AIAhura Tech's DevOps interview pro
 Part of AIAhura Tech assessment process.
 
 
-## Thanks to AIAhura Tech for this DevOps challenge!
+***Thanks to AIAhura Tech for this DevOps challenge!***
 
 **Ramtin Boreili**
