@@ -18,13 +18,13 @@ This repo hosts the AI Inference Service for AIAhura Tech's DevOps interview pro
 - Grafana: [https://grafana.ramtinboreili.ir](https://grafana.ramtinboreili.ir/) (admin/ZlYHCAsr96zD0W)
 - Prometheus: [https://prom.ramtinboreili.ir ](https://prom.ramtinboreili.ir/)
 
-Contributing
-Mr.mohamad sadr
+## Contributing
+ **Mr.mohamad sadr**
 
-License
+## License
 Part of AIAhura Tech assessment process.
 
-Acknowledgments
-Thanks to AIAhura Tech for this DevOps challenge!
+
+## Thanks to AIAhura Tech for this DevOps challenge!
 
 **Ramtin Boreili**
